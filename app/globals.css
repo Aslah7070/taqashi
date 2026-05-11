@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #370909;
+  --color-brand-gold: #fdd48c;
+  --color-brand-cream: #ffffff;
+  --color-brand-soft: #fff5f5;
+  --color-brand-charcoal: #1a1a1a;
+  
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-merriweather), sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-primary);
+    color: var(--color-brand-cream);
+    font-family: var(--font-merriweather), sans-serif;
+    font-weight: 300;
+  }
+  
+  h1, h2, h3, h4, h5, h6, 
+  .font-serif, 
+  .content-title-1, 
+  .content-title-2,
+  .title-1,
+  .title-2 {
+    font-family: var(--font-playfair), serif !important;
+  }
+}
+/* =============================================
+   PREMIUM GRADIENTS — Deep & Moody
+   Brand: #570909 (primary) · #fdd48c (gold)
+   ============================================= */
+
+@layer utilities {
+
+  /* Body / page background — rich layered depth */
+  .bg-gradient-primary {
+    background:
+      radial-gradient(ellipse at 20% 0%, #7a1010 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 100%, #3d0505 0%, transparent 55%),
+      linear-gradient(160deg, #4a0808 0%, #570909 40%, #2e0404 100%);
+  }
+
+  /* Hero / full-bleed sections — dramatic deep pull */
+  .bg-gradient-hero {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(110, 12, 12, 0.9) 0%, transparent 60%),
+      radial-gradient(ellipse at 0% 100%, rgba(58, 6, 6, 0.8) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 50%, rgba(87, 9, 9, 0.6) 0%, transparent 50%),
+      linear-gradient(180deg, #1e0303 0%, #3b0707 50%, #1a0202 100%);
+  }
+
+  /* Soft sections — breathable warmth */
+  .bg-gradient-soft {
+    background:
+      radial-gradient(ellipse at 60% 30%, rgba(122, 16, 16, 0.5) 0%, transparent 60%),
+      linear-gradient(135deg, #570909 0%, #3a0606 60%, #2a0404 100%);
+  }
+
+  /* Card / surface — subtle lift with gold warmth */
+  .bg-gradient-surface {
+    background:
+      linear-gradient(145deg,
+        rgba(255, 255, 255, 0.04) 0%,
+        rgba(253, 212, 140, 0.03) 50%,
+        rgba(0, 0, 0, 0.15) 100%),
+      linear-gradient(160deg, #5e0a0a 0%, #470808 100%);
+    border: 1px solid rgba(253, 212, 140, 0.08);
+  }
+
+  /* Animated mesh — moody ambient movement */
+  .bg-mesh-primary {
+    background-color: #570909;
+    background-image:
+      radial-gradient(at 0% 0%,   rgba(122, 16, 16, 0.7) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(58, 6, 6, 0.7)   0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(30, 3, 3, 0.8)  0px, transparent 50%),
+      radial-gradient(at 0% 100%,  rgba(110, 12, 12, 0.7) 0px, transparent 50%),
+      radial-gradient(at 50% 50%,  rgba(87, 9, 9, 0.4)   0px, transparent 50%);
+    background-size: 200% 200%;
+    animation: mesh-move 18s ease infinite;
+  }
+
+  /* Gold-kissed text gradient */
+  .bg-gradient-gold-text {
+    background: linear-gradient(
+      100deg,
+      #fdd48c 0%,
+      #fff8ee 30%,
+      #fdd48c 55%,
+      #c9933a 75%,
+      #fdd48c 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 220% auto;
+    animation: shine 5s linear infinite;
+  }
+
+  /* Vignette overlay — adds cinematic depth over any background */
+  .vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(15, 2, 2, 0.6) 100%
+    );
+  }
+
+  @keyframes mesh-move {
+    0%   { background-position: 0% 0%; }
+    33%  { background-position: 100% 50%; }
+    66%  { background-position: 50% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+
+  @keyframes shine {
+    to { background-position: 220% center; }
+  }
+}

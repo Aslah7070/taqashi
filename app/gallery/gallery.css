@@ -1,0 +1,280 @@
+/* Using fonts from layout.tsx variables */
+
+.gallery-slider-body {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-merriweather), sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at center, #7a1515 0%, #641010 100%);
+  color: #ffffff;
+}
+
+.gallery-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+}
+
+.gallery-card-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fdd48c;
+  padding-left: 16px;
+  pointer-events: none;
+}
+
+.content-start {
+  width: 30px;
+  height: 5px;
+  border-radius: 99px;
+  background-color: #fdd48c;
+}
+
+.content-place {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.content-title-1,
+.content-title-2 {
+  font-weight: 500;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.gallery-details {
+  z-index: 22;
+  position: absolute;
+  top: 240px;
+  left: 60px;
+  pointer-events: none;
+}
+
+.gallery-details .place-box {
+  height: 46px;
+  overflow: hidden;
+}
+
+.gallery-details .place-box .text {
+  padding-top: 16px;
+  font-size: 20px;
+  position: relative;
+}
+
+.gallery-details .place-box .text:before {
+  top: 0;
+  left: 0;
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 4px;
+  border-radius: 99px;
+  background-color: #fdd48c;
+}
+
+.gallery-details .title-1,
+.gallery-details .title-2 {
+  font-weight: 500;
+  font-size: 72px;
+  text-transform: uppercase;
+  color: #641010;
+  display: block;
+  line-height: 1;
+}
+
+.gallery-details .title-box-1,
+.gallery-details .title-box-2 {
+  margin-top: 8px;
+  height: 85px;
+  overflow: hidden;
+  background-color: #fdd48c;
+  padding: 0 15px;
+  width: fit-content;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+.gallery-details .desc {
+  margin-top: 16px;
+  width: 500px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.gallery-details .cta {
+  width: 500px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.gallery-details .cta .bookmark {
+  border: none;
+  background-color: #fdd48c;
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  color: #641010;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.gallery-details .cta .bookmark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gallery-details .cta .discover {
+  border: 1px solid #fdd48c;
+  background-color: transparent;
+  height: 36px;
+  border-radius: 0;
+  color: #fdd48c;
+  padding: 4px 24px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  margin-left: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.gallery-details .cta .discover:hover {
+  background-color: #fdd48c;
+  color: #641010;
+}
+
+.gallery-indicator {
+  display: none;
+}
+
+.gallery-pagination {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: inline-flex;
+}
+
+.gallery-pagination .arrow {
+  z-index: 60;
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  border: 1px solid rgba(253,212,140,0.3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.gallery-pagination .arrow:hover {
+  background-color: rgba(253,212,140,0.08);
+  border-color: rgba(253,212,140,0.6);
+}
+
+.gallery-pagination .arrow:nth-child(2) {
+  margin-left: 20px;
+}
+
+.gallery-pagination .arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.5;
+  stroke: #fdd48c99;
+}
+
+.gallery-pagination .progress-sub-container {
+  margin-left: 24px;
+  z-index: 60;
+  width: 500px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.gallery-pagination .progress-sub-background {
+  width: 500px;
+  height: 3px;
+  background-color: rgba(253,212,140,0.15);
+}
+
+.gallery-pagination .progress-sub-foreground {
+  height: 3px;
+  background-color: #fdd48c;
+  width: 0;
+}
+
+.gallery-pagination .slide-numbers {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  z-index: 60;
+  position: relative;
+}
+
+.gallery-pagination .slide-numbers .item {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  color: #fdd48c;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.gallery-cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(145deg, #641010 0%, #4a0c0c 100%);
+  z-index: 100;
+}
+
+/* ─── Gallery2: Parallax Scroll Grid (inline, in-flow) ─── */
+.g2-gallery-track-inline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.g2-card {
+  overflow: hidden;
+}
+
+.g2-card-image-wrapper {
+  height: 135%;
+  will-change: transform;
+}
+
+.g2-card-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 800px) {
+  .g2-gallery-track-inline {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .g2-gallery-track-inline {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
