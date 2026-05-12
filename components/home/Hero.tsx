@@ -101,8 +101,27 @@ export default function Hero() {
 
         // ── MASTER LAYOUT ENGINE ──
         const renderLayout = (dur = 0.8, staggerDelay = 0) => {
+          const isMob = window.innerWidth < 1024;
+          const isSmallMob = window.innerWidth < 640;
+          
+          // Responsive constants
+          const cardW = isMob ? (isSmallMob ? 200 : 260) : 340;
+          const spacing = isMob ? (isSmallMob ? 45 : 75) : 135;
+          const yOffset = isMob ? 12 : 25;
+          const rotOffset = isMob ? 6 : 10;
+          const baseScaleSide1 = isMob ? 0.88 : 0.92;
+          const baseScaleSide2 = isMob ? 0.75 : 0.84;
+
+          // Scroll Collapse Positions (pulling them inwards)
+          const collXOffset = isMob ? 15 : 35; 
+          const collYOffset = isMob ? 6 : 10;
+          const collRotOffset = isMob ? 2 : 3;
+
           cardRefs.current.forEach((el, i) => {
             if (!el) return;
+
+            // Update width for responsiveness
+            gsap.set(el, { width: cardW });
 
             // Calculate distance from center (wraps around)
             let diff = ((i - activeIdx.current) % (DISHES.length * 2) + (DISHES.length * 2)) % (DISHES.length * 2);
@@ -117,20 +136,20 @@ export default function Hero() {
             const isVisible = Math.abs(diff) <= 2; // Only 5 cards are visible at a time
 
             // Base Carousel Positions 
-            const baseX = diff * 135; 
-            const baseY = Math.abs(diff) * 25; 
-            const baseRot = diff * 10; 
-            const baseScale = isActive ? 1 : (Math.abs(diff) === 1 ? 0.92 : (Math.abs(diff) === 2 ? 0.84 : 0.75)); 
+            const baseX = diff * spacing; 
+            const baseY = Math.abs(diff) * yOffset; 
+            const baseRot = diff * rotOffset; 
+            const baseScale = isActive ? 1 : (Math.abs(diff) === 1 ? baseScaleSide1 : (Math.abs(diff) === 2 ? baseScaleSide2 : 0.65)); 
             
             // FADE OUT LOGIC: Opacity drops to 0 for cards past diff 2 or -2
             const baseOp = isVisible ? (isActive ? 1 : (Math.abs(diff) === 1 ? 0.75 : 0.45)) : 0; 
             const baseZ = 10 - Math.abs(diff);
 
-            // Scroll Collapse Positions (pulling them inwards)
+            // Interpolated values based on scroll progress
             const p = scrollP.current;
-            const collX = diff * 35; 
-            const collY = Math.abs(diff) * 10;
-            const collRot = diff * 3;
+            const collX = diff * collXOffset; 
+            const collY = Math.abs(diff) * collYOffset;
+            const collRot = diff * collRotOffset;
 
             // Final interpolation
             const finalX = baseX + (collX - baseX) * p;
@@ -222,6 +241,15 @@ export default function Hero() {
           });
         });
 
+        // ── RESIZE HANDLER ──
+        const handleResize = () => {
+          renderLayout(0.2);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+
       }, sectionRef);
     };
 
@@ -257,10 +285,10 @@ export default function Hero() {
 
       <div className="relative z-10 flex-1 flex flex-col lg:flex-row w-full">
 
-<div className="flex-1 flex flex-col justify-center px-5 sm:px-10 lg:px-16 xl:px-20 pt-16 pb-12 lg:pt-0 w-full lg:max-w-[870px]">
+<div className="relative z-10 flex-1 flex flex-col justify-center px-5 sm:px-10 lg:px-16 xl:px-20 pt-10 pb-6 lg:pt-0 w-full lg:max-w-[870px]">
 
   {/* Eyebrow */}
-  <div ref={eyebrowRef} className="flex items-center gap-4 mb-6 sm:mb-8">
+  <div ref={eyebrowRef} className="flex items-center gap-4 mb-4 sm:mb-8">
     {/* your eyebrow content */}
   </div>
 
@@ -269,7 +297,7 @@ export default function Hero() {
     ref={titleRef}
     className="font-serif font-light leading-none overflow-visible"
     style={{
-      fontSize: "clamp(36px, 7vw, 82px)",
+      fontSize: "clamp(32px, 8vw, 82px)",
       color: "#fff5f5",
     }}
   >
@@ -308,7 +336,7 @@ export default function Hero() {
   </p>
 
   {/* CTA */}
-  <div ref={ctaRef} className="flex flex-wrap gap-4 mt-8 sm:mt-10">
+  <div ref={ctaRef} className="flex flex-wrap gap-4 mt-6 sm:mt-10">
     <Link
       href="/dine-in#reservation"
       style={{
@@ -352,12 +380,15 @@ export default function Hero() {
 </div>
 
         {/* ══ RIGHT COLUMN — PHYSICAL CAROUSEL ══ */}
-        <div className="flex-1 relative flex items-center justify-center pb-8 lg:pb-0 min-h-[520px] lg:min-h-0">
+        <div className="absolute inset-0 lg:relative lg:flex-1 flex items-center justify-center pb-8 lg:pb-0 min-h-[380px] sm:min-h-[520px] lg:min-h-0 z-0 lg:z-10">
+          
+          {/* Mobile-only overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50 lg:hidden z-20 pointer-events-none" />
 
-          <div className="absolute pointer-events-none" style={{ width: 660, height: 660, borderRadius: "50%", background: "radial-gradient(circle, rgba(253,212,140,0.1) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(65px)" }} />
-          <div className="absolute pointer-events-none" style={{ width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(253,212,140,0.05) 0%, transparent 60%)", top: "40%", left: "60%", transform: "translate(-50%,-50%)", filter: "blur(45px)" }} />
+          <div className="absolute pointer-events-none" style={{ width: "min(660px, 100vw)", height: "min(660px, 100vw)", borderRadius: "50%", background: "radial-gradient(circle, rgba(253,212,140,0.1) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(65px)" }} />
+          <div className="absolute pointer-events-none" style={{ width: "min(400px, 80vw)", height: "min(400px, 80vw)", borderRadius: "50%", background: "radial-gradient(circle, rgba(253,212,140,0.05) 0%, transparent 60%)", top: "40%", left: "60%", transform: "translate(-50%,-50%)", filter: "blur(45px)" }} />
 
-          <div style={{ position: "relative", width: "100%", maxWidth: 800, height: 560, display: "flex", alignItems: "center", justifyContent: "center", transform: "translateY(15px)" }}>
+          <div style={{ position: "relative", width: "100%", maxWidth: 800, height: "clamp(360px, 50vh, 560px)", display: "flex", alignItems: "center", justifyContent: "center", transform: "translateY(15px)" }}>
             
             {/* Render 10 buffered cards */}
             {EXTENDED_DISHES.map((dish, idx) => {
@@ -367,7 +398,7 @@ export default function Hero() {
                 <div
                   key={idx}
                   ref={(el) => { cardRefs.current[idx] = el; }}
-                  style={{ position: "absolute", width: 340, cursor: "pointer", transformStyle: "preserve-3d", willChange: "transform, opacity" }}
+                  style={{ position: "absolute", width: 340, maxWidth: "85vw", cursor: "pointer", transformStyle: "preserve-3d", willChange: "transform, opacity" }}
                 >
                   {/* Frame border */}
                   <div style={{ position: "absolute", inset: -5, border: `1px solid ${isCenter ? "rgba(253,212,140,0.42)" : "rgba(253,212,140,0.1)"}`, pointerEvents: "none", zIndex: 10, transition: "border-color 0.9s ease" }} />
@@ -390,7 +421,7 @@ export default function Hero() {
             })}
 
             {/* Static UI Overlay (Labels & Dots stay put over the center) */}
-            <div style={{ position: "absolute", bottom: -30, left: "50%", transform: "translateX(-50%)", width: 240, zIndex: 30, pointerEvents: "none" }}>
+            <div className="hidden lg:block" style={{ position: "absolute", bottom: "clamp(-30px, -4vh, -15px)", left: "50%", transform: "translateX(-50%)", width: "min(280px, 90vw)", zIndex: 30, pointerEvents: "none" }}>
                <div ref={labelRef} style={{ paddingLeft: 18, paddingRight: 18, paddingBottom: 25 }}>
                   <p style={{ fontFamily: "var(--font-serif)", fontSize: 17, fontStyle: "italic", color: "#fdd48c", fontWeight: 300, lineHeight: 1.2 }}>
                     {DISHES[currentDishIdx].name}
