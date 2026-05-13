@@ -51,8 +51,8 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled 
-            ? "py-4 backdrop-blur-xl bg-brand-primary/70 border-b border-brand-gold/10 shadow-2xl" 
-            : "py-8 bg-transparent border-b border-transparent"
+            ? "py-4 bg-mesh-primary lg:bg-brand-primary/70 lg:backdrop-blur-xl border-b border-brand-gold/10 lg:shadow-2xl" 
+            : "py-6 lg:py-8 bg-mesh-primary lg:bg-transparent border-b border-transparent"
         } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
       <div className="px-8 sm:px-14 lg:px-20 flex items-center justify-between">

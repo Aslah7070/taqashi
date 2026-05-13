@@ -25,7 +25,7 @@ const EXPERIENCES = [
 
 export default function ExperienceSection() {
   return (
-    <section className="relative py-28 overflow-hidden bg-radial-glow"
+    <section className="relative md:py-28 overflow-hidden bg-radial-glow"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20">
 

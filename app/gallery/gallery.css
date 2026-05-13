@@ -257,7 +257,8 @@
 }
 
 .g2-card-image-wrapper {
-  height: 135%;
+  height: 140%;
+  top: -20%;
   will-change: transform;
 }
 

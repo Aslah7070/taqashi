@@ -92,7 +92,7 @@ export default function Gallery2() {
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-[2px] min-h-[600px]">
           {/* Large Card (Featured) */}
           <div className="g2-card md:row-span-2 group relative overflow-hidden bg-[#1a0505] cursor-pointer h-full">
-            <div className="g2-card-image-wrapper h-[125%] relative w-full">
+            <div className="g2-card-image-wrapper h-[140%] relative w-full top-[-20%]">
               <Image 
                 src={displayImages[0]} 
                 alt="Gallery Featured" 
@@ -106,7 +106,7 @@ export default function Gallery2() {
           {/* Regular Cards */}
           {displayImages.slice(1).map((src, i) => (
             <div key={i} className="g2-card group relative overflow-hidden bg-[#1a0505] cursor-pointer h-full min-h-[280px]">
-              <div className="g2-card-image-wrapper h-[125%] relative w-full">
+              <div className="g2-card-image-wrapper h-[140%] relative w-full top-[-20%]">
                 <Image 
                   src={src} 
                   alt={`Gallery ${i + 1}`} 
