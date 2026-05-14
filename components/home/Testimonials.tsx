@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const REVIEWS = [
   {
-    quote: "The truffle risotto alone is worth the journey. There is a quiet genius at work in this kitchen — nothing is loud, everything is precise.",
+    quote: "The Al Macsa alone is worth the journey. There is a quiet genius at work in this kitchen — nothing is loud, everything is precise.",
     author: "Meera Krishnan",
     title: "Food Critic, The Hindu",
     rating: 5,
@@ -17,7 +17,7 @@ const REVIEWS = [
     rating: 5,
   },
   {
-    quote: "We celebrated our anniversary here. The chef's table experience was unlike anything else in the city — intimate, theatrical, and deeply delicious.",
+    quote: "We celebrated our anniversary here. The honey chilli was unlike anything else in the city — sweet, spicy and deeply delicious.",
     author: "Ananya & Vikram Nair",
     title: "Verified Guests",
     rating: 5,

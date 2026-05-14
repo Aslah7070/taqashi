@@ -9,7 +9,7 @@ const data = [
   {
     place: "YEMENI AUTHENTIC",
     title: "Lamb",
-    title2: "Haneeth",
+    title2: "Mandi",
     description:
       "Slow-cooked to perfection — tender meat layered over aromatic Mandi rice, sealed with ancient spice.",
     image: "/images/gallery/mandi-1.png",

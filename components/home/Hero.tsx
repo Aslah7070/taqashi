@@ -9,7 +9,7 @@ const NAVBAR_H = 72;
 const DISHES = [
   {
     src: "/images/dishes/lamb_mandi.png",
-    name: "Lamb Haneeth",
+    name: "Lamb Mandi",
     desc: "Aromatic rice and melt-in-your-mouth lamb, slow-cooked in traditional pits.",
   },
   {
